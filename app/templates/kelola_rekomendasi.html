@@ -1,0 +1,45 @@
+{% extends "layout/main_layout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm-12 mt-3">
+
+            <h4 class="text-center">Rekomendasi Tanaman Hortikultura <br> Untuk Iklim Kota Sukabumi 2020</h4>
+            <br>
+
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>No</th>
+                        <th>Bulan</th>
+                        <th>pH</th>
+                        <th>Ketinggian (mdpl)</th>
+                        <th>Rekomendasi No 1</th>
+                        <th>Rekomendasi No 2</th>
+                        <th>Rekomendasi No 3</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for no, rekomendasi in data %}
+                        <tr>
+                            <td>{{ no }}</td>
+                            <td>{{ rekomendasi.bulan }}</td>
+                            <td>{{ rekomendasi.ph }}</td>
+                            <td>{{ rekomendasi.ketinggian_tanah }}</td>
+                            <td>{{ rekomendasi.tanaman_1 }}</td>
+                            <td>{{ rekomendasi.tanaman_2 }}</td>
+                            <td>{{ rekomendasi.tanaman_3 }}</td>
+                            <td>
+                                <a href="/kelola_rekomendasi/hapus_data_rekomendasi/{{ rekomendasi.id }}" class="btn btn-danger">Hapus</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

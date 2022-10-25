@@ -1,0 +1,34 @@
+{% extends "layout/main_layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm-12">
+            <form action="/kelola_data/aksi_ubah_data" method="POST">
+                
+                <input type="hidden" name="id" value="{{ tanaman.id }}">
+                <div class="form-group">
+                    <label for="nama_tanaman">Nama tanaman</label>
+                    <input type="text" class="form-control" name="nama_tanaman" value="{{ tanaman.nama_tanaman }}" placeholder="Masukan nama tanaman">
+                </div>
+                <div class="form-group">
+                    <label for="ph">Nilai ph</label>
+                    <input type="text" class="form-control" name="ph" value="{{ tanaman.ph }}" placeholder="Masukan nilai ph tanah">
+                </div>
+                <div class="form-group">
+                    <label for="suhu">Nilai suhu (c)</label>
+                    <input type="text" class="form-control" name="suhu" value="{{ tanaman.suhu }}" placeholder="Masukan nilai suhu udara (rata-rata/bulan)">
+                </div>
+                <div class="form-group">
+                    <label for="curah_hujan">Nilai curah hujan (mm/bulan)</label>
+                    <input type="text" class="form-control" name="curah_hujan" value="{{ tanaman.curah_hujan }}" placeholder="Masukan nilai curah hujan (rata-rata/bulan)">
+                </div>
+                <div class="form-group">
+                    <label for="ketinggian_tanah">Nilai ketinggian tanah (mdpl)</label>
+                    <input type="text" class="form-control" name="ketinggian_tanah" value="{{ tanaman.ketinggian_tanah }}" placeholder="Masukan nilai ketinggian tanah (mdpl)">
+                </div>
+                <button type="submit" class="btn btn-success">Simpan</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

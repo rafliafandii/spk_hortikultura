@@ -1,0 +1,107 @@
+{% extends "layout/main_layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm-12">
+            <h3>Hasil Perankingan</h3>
+            <br>
+        </div>
+
+        <div class="col-sm-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr class="thead-dark">
+                        <th colspan="4">TPV Kriteria</th>
+                    </tr>
+                    <tr align="center">
+                        <td>pH</td>
+                        <td>Suhu</td>
+                        <td>Curah Hujan</td>
+                        <td>Ketinggian Tanah</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for c in tpv %}
+                            <td width="100">{{ tpv[c] }}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-12 mt-3">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="3">Nilai Consistency Ratio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Consistency Ratio</td>
+                        <td>:</td>
+                        <td>{{ cr }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-12">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="5">TPV Alternatif</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(list_alternatif|length) %}
+                        <tr>
+                            <td>{{ list_alternatif[i][0] }}</td>
+                            <td>{{ list_alternatif[i][1] }}</td>
+                            <td>{{ list_alternatif[i][2] }}</td>
+                            <td>{{ list_alternatif[i][3] }}</td>
+                            <td>{{ list_alternatif[i][4] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="3">Ranking</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in range(ranking|length) %}
+                    <tr>
+                        <td>{{ ranking[b][0] }}</td>
+                        <td>:</td>
+                        <td>{{ ranking[b][1] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th colspan="3">Rekomendasi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in range(rekomendasi|length) %}
+                    <tr>
+                        <td>Ranking {{ c }}</td>
+                        <td>:</td>
+                        <td>{{ rekomendasi[c] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

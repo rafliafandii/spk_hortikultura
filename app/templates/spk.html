@@ -1,0 +1,128 @@
+{% extends "layout/main_layout.html" %}
+{% block content %}
+
+<div class="container">
+  <div class="row mt-3 bg-white">
+    <div class="col-sm-12">
+      <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModalCenter">Lihat daftar tanaman</button>
+    </div>
+    
+    <div class="col-sm-12 mt-3">
+
+      <div class="card">
+        <div class="card-header">
+          <h4>SPK Pemilihan Tanaman Hortikultura</h4>
+        </div>
+        <div class="card-body">
+          <h6 class="card-title text-center">Masukan data dibawah untuk mencari tanaman yang sesuai dengan kondisi yang ada</h6>
+          <div class="card-text">
+              
+            <form action="/proses_hitung" method="post">
+              <div class="form-group">
+                <label for="bulan">Masukan bulan</label>
+                <input type="text" class="form-control" name="bulan" placeholder="Masukan bulan">
+              </div>
+              <div class="form-group">
+                <label for="ph">Nilai ph</label>
+                <input type="text" class="form-control" name="ph" placeholder="Masukan nilai ph tanah">
+              </div>
+              <div class="form-group">
+                <label for="suhu">Nilai suhu (c)</label>
+                <input type="text" class="form-control" name="suhu" placeholder="Masukan nilai suhu udara (rata-rata/bulan)">
+              </div>
+              <div class="form-group">
+                <label for="curah_hujan">Nilai curah hujan (mm/bulan)</label>
+                <input type="text" class="form-control" name="curah_hujan" placeholder="Masukan nilai curah hujan (rata-rata/bulan)">
+              </div>
+              <div class="form-group">
+                <label for="ketinggian_tanah">Nilai ketinggian tanah (mdpl)</label>
+                <input type="text" class="form-control" name="ketinggian_tanah" placeholder="Masukan nilai ketinggian tanah (mdpl)">
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+      
+          </div>
+        </div>
+        <div class="card-footer text-muted text-center">
+          Skripsi - Muhammad Rafli Afandi Putra
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<style type="text/css">
+  .modal {
+      padding: 0 !important;
+  }
+
+  .modal .modal-dialog {
+      width: 100%;
+      max-width: none;
+      height: 100%;
+      margin: 0;
+  }
+
+  .modal .modal-content {
+      height: 100%;
+      border: 0;
+      border-radius: 0;
+  }
+
+  .modal .modal-body {
+      overflow-y: auto;
+  }
+</style>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Daftar tanaman</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <table class="table table-striped">
+          <thead>
+            <tr class="thead-dark" align="center">
+              <th colspan="6">Daftar Tanaman</th>
+            </tr>
+            <tr>
+              <th>No</th>
+              <th>Nama Tanaman</th>
+              <th>pH</th>
+              <th>Suhu (c)</th>
+              <th>Curah Hujan (mm/bln)</th>
+              <th>Ketinggian Tanah (mdpl)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for no, tanaman in daftar_tanaman %}
+              <tr>
+                <td>{{ no }}</td>
+                <td>{{ tanaman.nama_tanaman }}</td>
+                <td>{{ tanaman.ph }}</td>
+                <td>{{ tanaman.suhu }}</td>
+                <td>{{ tanaman.curah_hujan }}</td>
+                <td>{{ tanaman.ketinggian_tanah }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        <a href="/kelola_data/tambah_data" class="btn btn-primary">Tambah Data</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

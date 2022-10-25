@@ -1,0 +1,90 @@
+{% extends "layout/main_layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm-12">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModalCenter">
+                Tambah Data
+            </button>
+        </div>
+
+        <div class="col-sm-12 mt-3">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Tanaman</th>
+                        <th>pH</th>
+                        <th>Suhu</th>
+                        <th>Curah Hujan</th>
+                        <th>Ketinggian Tanah</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for no, tanaman in data %}
+                        <tr>
+                            <td>{{ no }}</td>
+                            <td>{{ tanaman.nama_tanaman }}</td>
+                            <td>{{ tanaman.ph }}</td>
+                            <td>{{ tanaman.suhu }}</td>
+                            <td>{{ tanaman.curah_hujan }}</td>
+                            <td>{{ tanaman.ketinggian_tanah }}</td>
+                            <td>
+                                <a href="/kelola_data/ubah_data/{{ tanaman.id }}" class="btn btn-primary">Ubah</a>
+                                <a href="/kelola_data/hapus_data/{{ tanaman.id }}" class="btn btn-danger">Hapus</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<form action="/kelola_data/tambah_data" method="post">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Tambah data tanaman</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="form-group">
+                    <label for="nama_tanaman">Nama tanaman</label>
+                    <input type="text" class="form-control" name="nama_tanaman" placeholder="Masukan nama tanaman">
+                </div>
+                <div class="form-group">
+                    <label for="ph">Nilai ph</label>
+                    <input type="text" class="form-control" name="ph" placeholder="Masukan nilai ph tanah">
+                </div>
+                <div class="form-group">
+                    <label for="suhu">Nilai suhu (c)</label>
+                    <input type="text" class="form-control" name="suhu" placeholder="Masukan nilai suhu udara (rata-rata/bulan)">
+                </div>
+                <div class="form-group">
+                    <label for="curah_hujan">Nilai curah hujan (mm/bulan)</label>
+                    <input type="text" class="form-control" name="curah_hujan" placeholder="Masukan nilai curah hujan (rata-rata/bulan)">
+                </div>
+                <div class="form-group">
+                    <label for="ketinggian_tanah">Nilai ketinggian tanah (mdpl)</label>
+                    <input type="text" class="form-control" name="ketinggian_tanah" placeholder="Masukan nilai ketinggian tanah (mdpl)">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+              <button type="submit" class="btn btn-success">Simpan</button>
+            </div>
+          </div>
+        </div>
+    </div>
+</form>
+  
+{% endblock %}
